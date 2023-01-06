@@ -1,0 +1,40 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+header{
+    background-color:dimgray;
+}
+
+
+img {
+    display: inline-block;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    margin-bottom:2rem;
+    max-width:5%;
+}
+
+.btn {
+    margin-top: 1rem;
+    background-color:dimgray;
+}
+
+.btn:hover{
+    background-color:gray;
+}

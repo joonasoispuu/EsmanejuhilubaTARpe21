@@ -1,0 +1,54 @@
+﻿@model EsmaneJuhilubaTARpe21JÕ.Models.Driving_Exam
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Driving_Exam</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Driving_School)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Driving_School)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Theory_Exam)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Theory_Exam)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Driving_Test)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Driving_Test)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.License)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.License)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="License">Back to List</a>
+</div>

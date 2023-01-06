@@ -1,0 +1,7 @@
+﻿@model IEnumerable<EsmaneJuhilubaTARpe21JÕ.Models.Driving_Exam>
+
+@{
+	ViewData["Title"] = "Theory_Exam";
+}
+
+<partial name="_Partial_Exam" model="@Model" view-data='@new ViewDataDictionary(ViewData) {{"Partial",nameof(Driving_Exam.Theory_Exam)}}' />

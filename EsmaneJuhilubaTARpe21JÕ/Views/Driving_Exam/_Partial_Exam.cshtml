@@ -1,0 +1,35 @@
+﻿@model IEnumerable<EsmaneJuhilubaTARpe21JÕ.Models.Driving_Exam>
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Firstname)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Lastname)
+			</th>
+						<th>
+				@ViewData["Title"]
+						</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+				<tr>
+					<td>
+					@Html.DisplayFor(modelItem => item.Firstname)
+					</td>
+					<td>
+					@Html.DisplayFor(modelItem => item.Lastname)
+					</td>
+					<td>
+						<a asp-action="PassFail" asp-route-id="@item.Id" asp-route-Partial='@ViewData["Partial"]' asp-route-tulemus="1">Õnnestus</a> |
+						<a asp-action="PassFail" asp-route-id="@item.Id" asp-route-Partial='@ViewData["Partial"]' asp-route-tulemus="2">Ebaõnnestus</a>
+					</td>
+				</tr>
+		}
+	</tbody>
+</table>
