@@ -53,7 +53,7 @@ namespace EsmaneJuhilubaTARpe21JÕ.Controllers
         public async Task<IActionResult> Theory_Exam()
         {
             var model = _context.Driving_Exam
-                .Where(e => e.Driving_School >= 1 && e.Theory_Exam == -1);
+                .Where(e => e.Driving_School >= 3 && e.Theory_Exam == -1);
             return View(await model.ToListAsync());
         }
 
@@ -61,7 +61,7 @@ namespace EsmaneJuhilubaTARpe21JÕ.Controllers
         public async Task<IActionResult> Driving_Test()
         {
             var model = _context.Driving_Exam
-                .Where(e => e.Driving_School >= 1 && e.Driving_Test == -1);
+                .Where(e => e.Theory_Exam >= 3 && e.Driving_Test == -1);
             return View(await model.ToListAsync());
         }
 
@@ -73,7 +73,7 @@ namespace EsmaneJuhilubaTARpe21JÕ.Controllers
                 return NotFound();
             }
 
-            if (Driving_Exam.Driving_Test == 1 & Driving_Exam.License == -1)
+            if (Driving_Exam.Driving_Test == 3 & Driving_Exam.License == -1)
             {
                 Driving_Exam.License = 1;
             }
@@ -155,10 +155,10 @@ namespace EsmaneJuhilubaTARpe21JÕ.Controllers
                 Id = e.Id,
                 Firstname = e.Firstname,
                 Lastname = e.Lastname,
-                Driving_School = e.Driving_School == -1 ? "." : e.Driving_School == 1 ? "Õnnestus" : "Põrus",
-				Theory_Exam = e.Theory_Exam == -1 ? "." : e.Theory_Exam == 1 ? "Õnnestus" : "Põrus",
-                Driving_Test = e.Driving_Test == -1 ? "." : e.Driving_Test == 1 ? "Õnnestus" : "Põrus",
-                License = e.License == -1 ? "Väljasta" : e.Driving_Test == 1 ? "Väljastatud" : "ERROR"
+                Driving_School = e.Driving_School == -1 ? "." : e.Driving_School == 2 ? "Põrus" : "Õnnestus",
+				Theory_Exam = e.Theory_Exam == -1 ? "." : e.Theory_Exam == 2 ? "Põrus" : "Õnnestus",
+                Driving_Test = e.Driving_Test == -1 ? "." : e.Driving_Test == 2 ? "Põrus" : "Õnnestus",
+                License = e.License == -1 ? "Väljasta" : e.Driving_Test == 1 ? "ERROR" : "Väljastatud"
             });
 
             return View(await model.ToListAsync());
