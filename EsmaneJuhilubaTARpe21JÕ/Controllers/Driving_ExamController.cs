@@ -31,7 +31,7 @@ namespace EsmaneJuhilubaTARpe21JÕ.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register([Bind("Id,Firstname,Lastname,Age")] Driving_Exam Driving_Exam)
+        public async Task<IActionResult> Register([Bind("Id,Firstname,Lastname,Age,TeacherFirstname,TeacherLastname,TeachersCertificateNumber")] Driving_Exam Driving_Exam)
         {
             if (ModelState.IsValid)
             {
@@ -62,11 +62,11 @@ namespace EsmaneJuhilubaTARpe21JÕ.Controllers
 
             if (driving_Exam.Rating >= 5)
             {
-                driving_Exam.Driving_Test = 3;
+                driving_Exam.Driving_Test = 1;
             }
             else if (driving_Exam.Rating <= 5)
             {
-                driving_Exam.Driving_Test = 2;
+                driving_Exam.Driving_Test = 0;
 
             }
 
@@ -101,7 +101,7 @@ namespace EsmaneJuhilubaTARpe21JÕ.Controllers
         public async Task<IActionResult> Theory_Exam()
         {
             var model = _context.Driving_Exam
-                .Where(e => e.Driving_School >= 3 && e.Theory_Exam == -1);
+                .Where(e => e.Driving_School >= 1 && e.Theory_Exam == -1);
             return View(await model.ToListAsync());
         }
 
@@ -109,7 +109,7 @@ namespace EsmaneJuhilubaTARpe21JÕ.Controllers
         public async Task<IActionResult> Driving_Test()
         {
             var model = _context.Driving_Exam
-                .Where(e => e.Theory_Exam >= 3 && e.Rating == null);
+                .Where(e => e.Theory_Exam >= 1 && e.Rating == null);
             return View(await model.ToListAsync());
         }
 
@@ -208,10 +208,10 @@ namespace EsmaneJuhilubaTARpe21JÕ.Controllers
                 Id = e.Id,
                 Firstname = e.Firstname,
                 Lastname = e.Lastname,
-                Driving_School = e.Driving_School == -1 ? "." : e.Driving_School == 2 ? "Põrus" : "Õnnestus",
-				Theory_Exam = e.Theory_Exam == -1 ? "." : e.Theory_Exam == 2 ? "Põrus" : "Õnnestus",
-                Driving_Test = e.Driving_Test == -1 ? "." : e.Driving_Test == 2 ? "Põrus" : "Õnnestus",
-                License = e.License == -1 ? "Väljasta" : e.Driving_Test == 1 ? "ERROR" : "Väljastatud",
+                Driving_School = e.Driving_School == -1 ? "." : e.Driving_School == 0 ? "Põrus" : "Õnnestus",
+				Theory_Exam = e.Theory_Exam == -1 ? "." : e.Theory_Exam == 0 ? "Põrus" : "Õnnestus",
+                Driving_Test = e.Driving_Test == -1 ? "." : e.Driving_Test == 0 ? "Põrus" : "Õnnestus",
+                License = e.License == -1 ? "Väljasta" : e.Driving_Test == 1 ? "Väljastatud" : "ERROR",
             });
 
             return View(await model.ToListAsync());

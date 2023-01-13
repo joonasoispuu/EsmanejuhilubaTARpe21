@@ -29,5 +29,16 @@ namespace EsmaneJuhilubaTARpe21JÕ.Models
 
         public int? Rating { get; set; } = null;
         public int? Driving_Test_Driving_Hours { get; set; } = null;
+
+        [StringLength(64)]
+        [Required]
+        public string TeacherFirstname { get; set; }
+        [StringLength(64)]
+        [Required]
+        public string TeacherLastname { get; set; }
+
+        [Range(100000000, 999999999)]
+        [Required]
+        public int TeachersCertificateNumber { get; set; }
     }
 }

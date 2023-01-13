@@ -26,8 +26,8 @@
 					@Html.DisplayFor(modelItem => item.Lastname)
 					</td>
 					<td>
-						<a asp-action="PassFail" asp-route-id="@item.Id" asp-route-Partial='@ViewData["Partial"]' asp-route-tulemus="3">Õnnestus</a> |
-						<a asp-action="PassFail" asp-route-id="@item.Id" asp-route-Partial='@ViewData["Partial"]' asp-route-tulemus="2">Ebaõnnestus</a>
+						<a asp-action="PassFail" asp-route-id="@item.Id" asp-route-Partial='@ViewData["Partial"]' asp-route-tulemus="1">Õnnestus</a> |
+						<a asp-action="PassFail" asp-route-id="@item.Id" asp-route-Partial='@ViewData["Partial"]' asp-route-tulemus="0">Ebaõnnestus</a>
 					</td>
 				</tr>
 		}
