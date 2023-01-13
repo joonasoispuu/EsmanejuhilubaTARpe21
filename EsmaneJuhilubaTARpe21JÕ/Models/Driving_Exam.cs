@@ -23,5 +23,11 @@ namespace EsmaneJuhilubaTARpe21JÕ.Models
 		public int? Theory_Exam { get; set; } = -1;
 		public int? Driving_Test { get; set; } = -1;
 		public int? License { get; set; } = -1;
-	}
+
+        [DataType(DataType.Date)]
+        public DateTime? Driving_Test_Date { get; set; } = null;
+
+        public int? Rating { get; set; } = null;
+        public int? Driving_Test_Driving_Hours { get; set; } = null;
+    }
 }

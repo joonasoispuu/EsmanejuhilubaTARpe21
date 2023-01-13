@@ -9,5 +9,7 @@
 		public string Theory_Exam { get; set; }
 		public string Driving_Test { get; set; }
 		public string License { get; set; }
-	}
+		public string Rating { get; set; }
+
+    }
 }

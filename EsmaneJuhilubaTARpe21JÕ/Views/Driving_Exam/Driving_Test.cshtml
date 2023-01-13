@@ -4,4 +4,57 @@
 	ViewData["Title"] = "Driving_Test";
 }
 
-<partial name="_Partial_Exam" model="@Model" view-data='@new ViewDataDictionary(ViewData) {{"Partial",nameof(Driving_Exam.Driving_Test)}}' />
+<h3>Ratings under 5 will not pass the test</h3>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Firstname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lastname)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lastname)
+                </td>
+                <td>
+                    <form asp-action="Rating">
+                        <h3>Rating</h3>
+                        <input type="hidden" value="@item.Id" name="@nameof(item.Id)" />
+                        <div class="d-flex">
+                            <div class="form-group mr-1">
+                                <input type="number" value="@item.Rating" name="@nameof(item.Rating)" min="1" max="10" class="form-control" />
+                            </div>
+                        </div>
+                        <h3>Driving Hours</h3>
+                        <div class="d-flex">
+                            <div class="form-group mr-1">
+                                <input type="number" value="@item.Driving_Test_Driving_Hours" name="@nameof(item.Driving_Test_Driving_Hours)" min="1" max="24" class="form-control" />
+                            </div>
+                        </div>
+                        <h3>Date</h3>
+                        <div class="form-group mr-1">
+                            <input type="datetime-local" value="@item.Driving_Test_Date" name="@nameof(item.Driving_Test_Date)" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Submit" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

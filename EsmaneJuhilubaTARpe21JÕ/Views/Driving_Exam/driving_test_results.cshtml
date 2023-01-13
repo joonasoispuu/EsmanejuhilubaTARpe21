@@ -1,0 +1,53 @@
+﻿@model IEnumerable<EsmaneJuhilubaTARpe21JÕ.Models.Driving_Exam>
+
+@{
+    ViewData["Title"] = "Driving Test Results";
+}
+
+<h1>Driving Test Results</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Firstname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lastname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Driving_Test_Driving_Hours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Driving_Test_Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Driving_Test_Driving_Hours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Driving_Test_Date)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

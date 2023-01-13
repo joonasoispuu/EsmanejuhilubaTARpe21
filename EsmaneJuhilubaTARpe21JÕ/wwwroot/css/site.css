@@ -35,6 +35,11 @@ img {
     background-color:dimgray;
 }
 
+.logo{
+    max-width:15%;
+    position:absolute;
+}
+
 .btn:hover{
     background-color:gray;
 }

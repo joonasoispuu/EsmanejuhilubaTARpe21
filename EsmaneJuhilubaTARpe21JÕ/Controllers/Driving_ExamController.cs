@@ -41,6 +41,54 @@ namespace EsmaneJuhilubaTARpe21JÕ.Controllers
             }
             return View(Driving_Exam);
         }
+
+        // POST: Driving_Exam/Ratings
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Rating([Bind("Id,Rating,Driving_Test_Driving_Hours,Driving_Test_Date")] Driving_Exam tulemus)
+        {
+
+            var driving_Exam = await _context.Driving_Exam.FindAsync(tulemus.Id);
+            if (driving_Exam == null)
+            {
+                return NotFound();
+            }
+
+            driving_Exam.Driving_Test_Driving_Hours = tulemus.Driving_Test_Driving_Hours;
+            driving_Exam.Rating = tulemus.Rating;
+            driving_Exam.Driving_Test_Date = tulemus.Driving_Test_Date;
+
+            if (driving_Exam.Rating >= 5)
+            {
+                driving_Exam.Driving_Test = 3;
+            }
+            else if (driving_Exam.Rating <= 5)
+            {
+                driving_Exam.Driving_Test = 2;
+
+            }
+
+            try
+                {
+                _context.Update(driving_Exam);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!EksamExists(driving_Exam.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Driving_Test));
+        }
+
         // GET: Driving_Exam/Driving_School
         public async Task<IActionResult> Driving_School()
         {
@@ -61,7 +109,7 @@ namespace EsmaneJuhilubaTARpe21JÕ.Controllers
         public async Task<IActionResult> Driving_Test()
         {
             var model = _context.Driving_Exam
-                .Where(e => e.Theory_Exam >= 3 && e.Driving_Test == -1);
+                .Where(e => e.Theory_Exam >= 3 && e.Rating == null);
             return View(await model.ToListAsync());
         }
 
@@ -73,7 +121,7 @@ namespace EsmaneJuhilubaTARpe21JÕ.Controllers
                 return NotFound();
             }
 
-            if (Driving_Exam.Driving_Test == 3 & Driving_Exam.License == -1)
+            if (Driving_Exam.Rating >= 5 & Driving_Exam.License == -1)
             {
                 Driving_Exam.License = 1;
             }
@@ -146,6 +194,11 @@ namespace EsmaneJuhilubaTARpe21JÕ.Controllers
             return RedirectToAction(Partial);
         }
 
+        public async Task<IActionResult> driving_test_results()
+        {
+            return View(await _context.Driving_Exam.ToListAsync());
+        }
+
         // GET: Driving_Exam/License
         public async Task<IActionResult> License()
         {
@@ -158,7 +211,7 @@ namespace EsmaneJuhilubaTARpe21JÕ.Controllers
                 Driving_School = e.Driving_School == -1 ? "." : e.Driving_School == 2 ? "Põrus" : "Õnnestus",
 				Theory_Exam = e.Theory_Exam == -1 ? "." : e.Theory_Exam == 2 ? "Põrus" : "Õnnestus",
                 Driving_Test = e.Driving_Test == -1 ? "." : e.Driving_Test == 2 ? "Põrus" : "Õnnestus",
-                License = e.License == -1 ? "Väljasta" : e.Driving_Test == 1 ? "ERROR" : "Väljastatud"
+                License = e.License == -1 ? "Väljasta" : e.Driving_Test == 1 ? "ERROR" : "Väljastatud",
             });
 
             return View(await model.ToListAsync());
