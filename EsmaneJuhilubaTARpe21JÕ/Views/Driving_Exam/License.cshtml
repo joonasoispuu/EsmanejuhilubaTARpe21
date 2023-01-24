@@ -50,9 +50,9 @@
                     @Html.DisplayFor(modelItem => item.Driving_Test)
                 </td>
                 <td>
-                    @if (item.License == "Väljasta")
+                    @if (item.License == "Issue")
                     {
-                        <a asp-action="IssuancePermit" asp-route-id="@item.Id" asp-route-tulemus="1">Väljasta </a>
+                        <a asp-action="IssuancePermit" asp-route-id="@item.Id" asp-route-tulemus="1">Issue </a>
                     }
                     else
                     {
